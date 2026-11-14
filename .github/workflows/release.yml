@@ -65,7 +65,7 @@ jobs:
       # The protocol tests run against a simulated mouse; once is enough.
       - name: Test (protocol)
         if: matrix.platform == 'windows-latest'
-        run: npm run test:rust
+        run: npm run build && npm run test:rust
         timeout-minutes: 20
 
       - uses: tauri-apps/tauri-action@v0

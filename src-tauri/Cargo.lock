@@ -900,7 +900,7 @@ dependencies = [
 
 [[package]]
 name = "g502-hub"
-version = "2.0.1"
+version = "2.0.2"
 dependencies = [
  "hidapi",
  "serde",
