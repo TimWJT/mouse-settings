@@ -1,0 +1,26 @@
+[package]
+name = "g502-hub"
+version = "2.0.1"
+description = "Offline settings app for the Logitech G502 HERO: edits the mouse's onboard profiles"
+authors = ["Tim"]
+edition = "2021"
+rust-version = "1.77.2"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["sync"] }
+
+# Windows: pure-Rust backend (no C toolchain). Linux: hidraw (needs libudev-dev to build).
+# macOS: IOKit. All three expose the HID usage page used to find the HID++ interface.
+hidapi = { version = "2.6", default-features = false, features = ["windows-native", "linux-static-hidraw"] }
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "G502 Hub",
+  "version": "2.0.1",
+  "identifier": "com.g502hub.desktop",
+  "build": {
+    "frontendDist": "../dist",
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run build"
+  },
+  "app": {
+    "security": {
+      "csp": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src ipc: http://ipc.localhost; object-src 'none'; base-uri 'none'; form-action 'none'",
+      "assetProtocol": { "enable": false }
+    },
+    "windows": [
+      {
+        "label": "main",
+        "title": "G502 Hub",
+        "width": 1100,
+        "height": 820,
+        "minWidth": 720,
+        "minHeight": 560,
+        "center": true
+      }
+    ]
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "shortDescription": "Offline settings app for the Logitech G502 HERO",
+    "longDescription": "Edits the G502 HERO's onboard profiles (DPI, polling rate, buttons, lighting) over USB. No account, no network, no background service.",
+    "category": "Utility",
+    "copyright": "© 2026 Tim Wang",
+    "licenseFile": "../LICENSE",
+    "windows": {
+      "nsis": { "installMode": "currentUser", "startMenuFolder": "G502 Hub" }
+    }
+  }
+}

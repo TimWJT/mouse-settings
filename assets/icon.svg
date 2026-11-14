@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0f17"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="100%" stop-color="#0095ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="54" fill="url(#bg)" stroke="#1e293b" stroke-width="6"/>
+  <!-- G502 angular silhouette -->
+  <path d="M96 38 L148 38 L174 82 L178 164 C178 198 154 220 124 220 C94 220 74 198 72 166 L60 144 L60 112 L76 96 Z" fill="#151c28" stroke="url(#cyan)" stroke-width="7" stroke-linejoin="round"/>
+  <!-- Scroll wheel & split triggers -->
+  <rect x="116" y="54" width="14" height="34" rx="7" fill="url(#cyan)"/>
+  <line x1="123" y1="90" x2="123" y2="118" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+  <!-- G502 3 DPI slash chevrons -->
+  <path d="M84 126 L102 118 M84 138 L104 130 M84 150 L106 142" stroke="url(#cyan)" stroke-width="5.5" stroke-linecap="round"/>
+  <!-- Angular G emblem -->
+  <path d="M138 156 H120 V184 H140 V170 H130" fill="none" stroke="url(#cyan)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

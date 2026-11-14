@@ -1,0 +1,22 @@
+{
+  "name": "g502-hub",
+  "version": "2.0.1",
+  "description": "Offline settings app for the Logitech G502 HERO: edits the mouse's onboard profiles",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "preview": "node build.mjs && node serve.mjs",
+    "tauri": "tauri",
+    "app:dev": "tauri dev",
+    "app:build": "tauri build",
+    "icons": "node create-icon.mjs"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.4",
+    "esbuild": "^0.28.2"
+  }
+}

@@ -1,0 +1,114 @@
+name: release
+
+# Tag a commit to cut a release:
+#   git tag v2.0.1 && git push origin v2.0.1
+# Installers for every platform are built and attached to a DRAFT release,
+# which you review and publish by hand from the Releases page.
+#
+# No standalone HTML download: without the desktop app the page can only show a
+# built-in sample profile, so it isn't useful on its own.
+# No updater either, so no TAURI_SIGNING_PRIVATE_KEY secret is needed.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  installers:
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+            args: ''
+          - platform: macos-latest
+            args: '--target aarch64-apple-darwin'
+          - platform: macos-latest
+            args: '--target x86_64-apple-darwin'
+          - platform: ubuntu-22.04
+            args: ''
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - name: Install Linux dependencies
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          # webkit/gtk for Tauri; libudev + libusb for hidapi (USB access to the mouse).
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libudev-dev libusb-1.0-0-dev pkg-config
+
+      - run: npm ci
+
+      - name: Test (page)
+        run: npm test
+        timeout-minutes: 2
+
+      # The protocol tests run against a simulated mouse; once is enough.
+      - name: Test (protocol)
+        if: matrix.platform == 'windows-latest'
+        run: npm run test:rust
+        timeout-minutes: 20
+
+      - uses: tauri-apps/tauri-action@v0
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'G502 Hub ${{ github.ref_name }}'
+          releaseBody: |
+            ## Which file do I download?
+
+            Pick **one** file from **Assets** below. You can ignore everything else.
+
+            | Your computer | Download the file ending in |
+            |---|---|
+            | **Windows** | **`_x64-setup.exe`** |
+            | **Mac with Apple silicon** (M1, M2, M3, M4…) | **`_aarch64.dmg`** |
+            | **Mac with Intel** | **`_x64.dmg`** |
+            | **Linux** (Ubuntu, Debian, Mint) | **`.deb`** |
+            | **Linux** (any other) | **`.AppImage`** |
+
+            Windows is the tested platform. On Linux, add the udev rule from the README
+            so the app can open the mouse.
+
+            Not sure which Mac you have? Apple menu → **About This Mac**. "Chip: Apple M…"
+            means Apple silicon; "Processor: Intel" means Intel.
+
+            ### First launch warnings
+
+            The app is free and not code-signed, so your system will warn once:
+
+            - **Windows** — "Windows protected your PC": click **More info**, then **Run anyway**.
+            - **macOS** — right-click the app, choose **Open**, then confirm.
+
+            ### Before you use it
+
+            Close Logitech G Hub first. Plug the mouse in with its USB cable.
+
+            ### The other files
+
+            `.msi` (Windows) and `.rpm` (Fedora/openSUSE) are alternative installers for
+            people who specifically need them.
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.args }}

@@ -1,0 +1,155 @@
+{
+  "reportRateHz": 500,
+  "dpiStages": [
+    300,
+    550,
+    900
+  ],
+  "defaultStage": 2,
+  "shiftStage": 2,
+  "buttons": [
+    {
+      "kind": "mouse",
+      "button": 1
+    },
+    {
+      "kind": "mouse",
+      "button": 2
+    },
+    {
+      "kind": "mouse",
+      "button": 3
+    },
+    {
+      "kind": "mouse",
+      "button": 4
+    },
+    {
+      "kind": "mouse",
+      "button": 5
+    },
+    {
+      "kind": "key",
+      "modifiers": 0,
+      "key": 48
+    },
+    {
+      "kind": "key",
+      "modifiers": 4,
+      "key": 43
+    },
+    {
+      "kind": "special",
+      "action": 0
+    },
+    {
+      "kind": "special",
+      "action": 10
+    },
+    {
+      "kind": "special",
+      "action": 2
+    },
+    {
+      "kind": "special",
+      "action": 1
+    },
+    {
+      "kind": "disabled"
+    },
+    {
+      "kind": "disabled"
+    },
+    {
+      "kind": "disabled"
+    },
+    {
+      "kind": "disabled"
+    },
+    {
+      "kind": "disabled"
+    }
+  ],
+  "gshiftButtons": [
+    {
+      "kind": "mouse",
+      "button": 1
+    },
+    {
+      "kind": "mouse",
+      "button": 2
+    },
+    {
+      "kind": "mouse",
+      "button": 3
+    },
+    {
+      "kind": "mouse",
+      "button": 4
+    },
+    {
+      "kind": "mouse",
+      "button": 5
+    },
+    {
+      "kind": "key",
+      "modifiers": 0,
+      "key": 48
+    },
+    {
+      "kind": "key",
+      "modifiers": 4,
+      "key": 43
+    },
+    {
+      "kind": "special",
+      "action": 0
+    },
+    {
+      "kind": "special",
+      "action": 10
+    },
+    {
+      "kind": "special",
+      "action": 2
+    },
+    {
+      "kind": "special",
+      "action": 1
+    },
+    {
+      "kind": "disabled"
+    },
+    {
+      "kind": "disabled"
+    },
+    {
+      "kind": "disabled"
+    },
+    {
+      "kind": "disabled"
+    },
+    {
+      "kind": "disabled"
+    }
+  ],
+  "lighting": [
+    {
+      "kind": "fixed",
+      "color": [
+        255,
+        0,
+        4
+      ]
+    },
+    {
+      "kind": "fixed",
+      "color": [
+        255,
+        0,
+        4
+      ]
+    }
+  ],
+  "name": "PROFILE_NAME_DEFAULT"
+}

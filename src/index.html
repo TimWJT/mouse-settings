@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>G502 Hub</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail" aria-label="Mouse">
+      <section class="device">
+        <p class="device-name" id="device-name">G502 HERO</p>
+        <p class="device-state" id="device-state"><span class="dot" aria-hidden="true"></span><span id="device-state-text">Looking for the mouse…</span></p>
+        <p class="device-meta" id="device-meta"></p>
+        <button type="button" class="btn" id="btn-refresh">Refresh</button>
+      </section>
+
+      <nav class="rail-section" aria-labelledby="profiles-h">
+        <h2 id="profiles-h" class="rail-h">Profiles on the mouse</h2>
+        <ul class="profile-list" id="profile-list"></ul>
+      </nav>
+
+      <section class="rail-section" aria-labelledby="backups-h">
+        <h2 id="backups-h" class="rail-h">Backups</h2>
+        <p class="hint" id="backups-empty">A copy of the old profile is saved here every time you save.</p>
+        <ul class="backup-list" id="backup-list"></ul>
+      </section>
+    </aside>
+
+    <main class="main" id="main">
+      <div class="notice" id="preview-notice" hidden>
+        Preview with a sample profile. Open the desktop app to change your real mouse.
+      </div>
+      <div class="notice warn" id="host-notice" hidden>
+        <p>The mouse is following G Hub, not its own memory, so saved profiles won't apply.</p>
+        <button type="button" class="btn" id="btn-onboard">Use the mouse's own memory</button>
+      </div>
+      <div class="notice warn" id="readonly-notice" hidden>
+        This is a factory profile. You can look at it, but it can't be changed.
+      </div>
+
+      <div class="empty" id="empty-state">
+        <h1 class="empty-h" id="empty-h">Plug in your G502 HERO</h1>
+        <p id="empty-p">Connect it with the USB cable, close Logitech G Hub, then press Refresh.</p>
+      </div>
+
+      <div id="editor" hidden>
+        <header class="page-head">
+          <h1 id="profile-title">Profile 1</h1>
+          <p class="page-sub" id="profile-sub"></p>
+        </header>
+
+        <section class="block" aria-labelledby="dpi-h">
+          <h2 id="dpi-h">Sensitivity</h2>
+          <div class="stages" id="stages"></div>
+          <div class="row">
+            <button type="button" class="btn" id="btn-add-stage">Add a DPI stage</button>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Starting DPI</span>
+              <select id="default-stage"></select>
+            </label>
+            <label class="field">
+              <span>Sniper DPI (while held)</span>
+              <select id="shift-stage"></select>
+            </label>
+          </div>
+          <fieldset class="field">
+            <legend>Polling rate</legend>
+            <div class="seg" id="rate-seg" role="radiogroup" aria-label="Polling rate"></div>
+          </fieldset>
+        </section>
+
+        <section class="block" aria-labelledby="buttons-h">
+          <div class="block-head">
+            <h2 id="buttons-h">Buttons</h2>
+            <div class="seg small" role="tablist" aria-label="Button layer">
+              <button type="button" role="tab" class="seg-btn" id="tab-normal" aria-selected="true">Normal</button>
+              <button type="button" role="tab" class="seg-btn" id="tab-gshift" aria-selected="false">While G-Shift is held</button>
+            </div>
+          </div>
+          <ul class="bindings" id="bindings"></ul>
+        </section>
+
+        <section class="block" aria-labelledby="light-h">
+          <h2 id="light-h">Lighting</h2>
+          <div class="zones" id="zones"></div>
+        </section>
+
+        <details class="block raw">
+          <summary>Show the raw profile bytes</summary>
+          <pre id="raw-bytes"></pre>
+        </details>
+      </div>
+    </main>
+  </div>
+
+  <footer class="savebar" id="savebar" hidden>
+    <p id="save-summary" aria-live="polite"></p>
+    <div class="savebar-actions">
+      <button type="button" class="btn" id="btn-undo">Undo changes</button>
+      <button type="button" class="btn primary" id="btn-save">Save to mouse</button>
+    </div>
+  </footer>
+
+  <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+  <dialog id="confirm">
+    <form method="dialog">
+      <h2 id="confirm-h">Save to the mouse?</h2>
+      <ul id="confirm-list"></ul>
+      <p class="hint" id="confirm-note">The current profile is backed up first.</p>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel">Keep editing</button>
+        <button class="btn primary" value="ok" id="confirm-ok">Save to mouse</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="keycap">
+    <form method="dialog">
+      <h2>Press the keys</h2>
+      <p class="hint">Hold any of Ctrl, Shift, Alt or Win, then press a key.</p>
+      <p class="keycap-preview" id="keycap-preview">Waiting…</p>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel">Cancel</button>
+        <button class="btn primary" value="ok" id="keycap-ok" disabled>Use these keys</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
