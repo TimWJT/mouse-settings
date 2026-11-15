@@ -1,4 +1,4 @@
-# G502 Hub design
+# Mouse Settings design
 
 **Character:** exact, quiet, hands-on. **World:** a hardware spec sheet next to the matte-black mouse.
 

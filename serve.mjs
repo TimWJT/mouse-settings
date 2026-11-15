@@ -21,4 +21,4 @@ createServer(async (req, res) => {
   } catch {
     res.writeHead(404).end('not found');
   }
-}).listen(PORT, '127.0.0.1', () => console.log(`G502 Hub preview: http://localhost:${PORT}`));
+}).listen(PORT, '127.0.0.1', () => console.log(`Mouse Settings preview: http://localhost:${PORT}`));

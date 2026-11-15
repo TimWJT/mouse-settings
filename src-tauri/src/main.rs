@@ -1,4 +1,4 @@
-//! G502 Hub: an offline settings app for the Logitech G502 HERO.
+//! Mouse Settings: an offline settings app for gaming mice. Currently supports the Logitech G502 HERO.
 //!
 //! It edits the mouse's onboard profiles over HID++ 2.0. Every save starts from the bytes
 //! on the mouse, changes only what the user changed, backs the old profile up first, and
@@ -112,5 +112,5 @@ fn main() {
             restore_backup,
         ])
         .run(tauri::generate_context!())
-        .expect("failed to start G502 Hub");
+        .expect("failed to start Mouse Settings");
 }

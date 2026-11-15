@@ -1,4 +1,4 @@
-// G502 Hub page: shows the profile read from the mouse, lets you edit it, saves it back.
+// Mouse Settings page: shows the profile read from the mouse, lets you edit it, saves it back.
 // All device logic lives in Rust; this file only renders and collects edits.
 
 import { api, isPreview } from './api.js';

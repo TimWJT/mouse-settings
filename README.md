@@ -1,8 +1,10 @@
-# G502 Hub
+# Mouse Settings
 
-An offline settings app for the **Logitech G502 HERO** (wired, USB `046D:C08B`). It edits the profiles stored on the mouse itself: DPI stages, polling rate, buttons (normal and G-Shift) and the two lighting zones. Once saved, the settings live in the mouse and work on any PC without software.
+An offline settings app for gaming mice. It currently supports only the **Logitech G502 HERO** (wired, USB `046D:C08B`). It edits the profiles stored on the mouse itself: DPI stages, polling rate, buttons (normal and G-Shift) and the two lighting zones. Once saved, the settings live in the mouse and work on any PC without software.
 
 No account, no network access, no background service.
+
+Unofficial: not made by, affiliated with or endorsed by Logitech. Source: https://github.com/TimWJT/mouse-settings. Previously called G502 Hub.
 
 ## How it keeps your mouse safe
 
@@ -23,7 +25,7 @@ npm run app:dev
 
 `npm run app:build` makes the installer. Close Logitech G Hub first; it can hold the mouse's settings interface.
 
-Windows is the tested platform. Linux and macOS builds use the same code through `hidapi` but haven't been tried on a real mouse. On Linux, building needs `libudev-dev`, and the app needs access to the mouse's hidraw device, e.g. `/etc/udev/rules.d/70-g502-hub.rules`:
+Windows is the tested platform. Linux and macOS builds use the same code through `hidapi` but haven't been tried on a real mouse. On Linux, building needs `libudev-dev`, and the app needs access to the mouse's hidraw device, e.g. `/etc/udev/rules.d/70-mouse-settings.rules`:
 
 ```
 KERNEL=="hidraw*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c08b", TAG+="uaccess"
@@ -82,4 +84,4 @@ src/
   api.js         backend calls, or a sample mouse in a plain browser
 ```
 
-The previous version is in `../_archive/g502-hub-v1/`.
+The previous version (v1) is archived in `../_archive/`.
